@@ -1,9 +1,16 @@
-import 'package:calculate_bmi/constants.dart';
 import 'package:flutter/material.dart';
-
+import 'package:calculate_bmi/constants.dart';
 import '../components/common_container.dart';
 
+String rBmi = "";
+
+
 class ResultPage extends StatelessWidget {
+  ResultPage({super.key, required this.bmi, required this.resultTxt, required this.interpret});
+  //
+  final String bmi;
+  final String resultTxt;
+  final String interpret;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +21,7 @@ class ResultPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             alignment: Alignment.bottomLeft,
             child: const Text(
               "YOUR RESULT",
@@ -28,28 +35,31 @@ class ResultPage extends StatelessWidget {
               flex: 5,
               child: CommonContainer(
                 color: kcardColor,
-                child: const Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Center(
                       child: Text(
-                          "RESULT",
+                          resultTxt,
                           style: kresultTxtStyle,
                       ),
                     ),
                     Center(
                       child: Text(
-                          "18.3",
+                          bmi,
                         style: kbmiTxtStyle,
                       ),
                     ),
                     Center(
-                      child: Text(
-                          "data data data data data data data data data data data data data data data data data data data data data ",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                        child: Text(
+                          interpret,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 20,
+                          ),
                         ),
                       ),
                     ),
